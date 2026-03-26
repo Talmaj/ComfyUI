@@ -1359,6 +1359,7 @@ class WAN21_CausalAR(WAN21):
         super(WAN21, self).__init__(model_config, model_type, device=device,
                                     unet_model=comfy.ldm.wan.ar_model.CausalWanModel)
         self.image_to_video = False
+        self.num_frame_per_block = getattr(model_config, "num_frame_per_block", 1)
 
 
 class WAN21_Vace(WAN21):

@@ -1179,6 +1179,7 @@ class WAN21_CausalAR_T2V(WAN21_T2V):
     def __init__(self, unet_config):
         super().__init__(unet_config)
         self.unet_config.pop("causal_ar", None)
+        self.num_frame_per_block = self.unet_config.pop("num_frame_per_block", 1)
 
     def get_model(self, state_dict, prefix="", device=None):
         return model_base.WAN21_CausalAR(self, device=device)

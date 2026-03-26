@@ -1842,7 +1842,9 @@ def sample_ar_video(model, x, sigmas, extra_args=None, callback=None, disable=No
             "does not support this interface — choose a different sampler."
         )
 
-    num_frame_per_block = ar_config.get("num_frame_per_block", 1)
+    num_frame_per_block = ar_config.get("num_frame_per_block", None)
+    if num_frame_per_block is None:
+        num_frame_per_block = getattr(inner_model, "num_frame_per_block", 1)
     seed = extra_args.get("seed", 0)
 
     bs, c, lat_t, lat_h, lat_w = x.shape
